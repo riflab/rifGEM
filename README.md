@@ -8,8 +8,8 @@ Run the python code
 ![alt text](https://github.com/riflab/rifGEMM/blob/master/images/1.PNG)
 
 1. You can chenge parameters
-...Maximum Period
-...Number of decade
+..Maximum Period
+.. Number of decade
 ...Periode per Decade
 ...Resistivity Value
 ...Thickness
