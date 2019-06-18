@@ -1,5 +1,5 @@
-# rifGEMM
-Geophysical Electromagnetic Method Modeling
+# rifGEM
+Geophysical Electromagnetic Modeling
 
 ## tutorial
 
@@ -19,5 +19,5 @@ Run the python code
 ## Question
 If you have a question, just [create new issue](https://github.com/riflab/rifGEMM/issues)
 
-## Download References
+## Download Reference
 [Download here](https://www.researchgate.net/publication/250729983_An_alternative_algorithm_for_one-dimensional_magnetotelluric_response_calculation)
