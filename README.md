@@ -1,5 +1,9 @@
-# rifGEM
-Geophysical Electromagnetic Modeling
+# About rifGEM
+Geophysical Electromagnetic Modeling is a software code for calculating Forward Modeling Magnetotelluric. 
+
+Current proggres Version 1.0_20171121 1D Forward Modelling Magnetotelluric. 
+
+Next, rifGEMM will be upgraded for 2D and 3D Forward Modeling and Inversion.
 
 ## Tutorial
 
