@@ -84,6 +84,7 @@ class Window(QtGui.QDialog):
                                                                     '\nOther softwares can be downloaded at https://github.com/riflab/'
                                                                     '\n'
                                                                     '\nVersion 1.0_20171121'
+                                                                    '\nDate: 21 November 2017'
                                                                     '\n'
                                                                     '\nReference:'
                                                                     '\nGrandis, H. (1999). An alternative algorithm for one-dimensional magnetotelluric response calculation. Computer & Geoscienes 25 (1999) 199-125. ',
