@@ -1,16 +1,18 @@
 # rifGEM
 Geophysical Electromagnetic Modeling
 
-## tutorial
+## Tutorial
 
-Run the python code
+1. Intall Python and library
+2. Run the python code
+3. You can chenge parameters (`Maximum Period, Number of decade, Periode per Decade, Resistivity Value, Thickness`)
+4. Then, clik `Run`
+5. You can also `Save Model` and `Save Data`
+6. Enjoy for educational purposes only
+
+## Screenshot
 
 ![alt text](https://github.com/riflab/rifGEMM/blob/master/images/1.PNG)
-
-1. You can chenge parameters (`Maximum Period, Number of decade, Periode per Decade, Resistivity Value, Thickness`)
-2. Then, clik `Run`
-3. You can also `Save Model` and `Save Data`
-4. Enjoy for educational purposes only
 
 ![alt text](https://github.com/riflab/rifGEMM/blob/master/images/2.PNG)
 
