@@ -5,15 +5,16 @@ This is free and opensource software under GNU General Public Licensed. Use at y
 
 # About Me
 Arif Darmawan 
+
 arif.darmawan@riflab.com
+
 [www.riflab.com](https://riflab.com)
 
 # Change Log
 Version 1.1_20200616: Update to PyQt5 from PyQt4
+
 Version 1.0_20171121: First version
 
-
-Next, rifGEM will be upgraded for 2D and 3D Forward Modeling and Inversion.
 
 # Tutorial
 1. Intall Python and library
