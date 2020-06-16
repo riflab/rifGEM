@@ -1,13 +1,13 @@
 import sys
 import numpy as np
 import FFMT1D
-from PyQt4 import QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
-class Window(QtGui.QDialog):
+class Window(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super(Window, self).__init__(parent)
         self.runStatus = False
@@ -20,31 +20,31 @@ class Window(QtGui.QDialog):
         self.canvas = FigureCanvas(self.figure)
         self.toolbar = NavigationToolbar(self.canvas, self)
 
-        self.buttonPlot = QtGui.QPushButton('Run')
+        self.buttonPlot = QtWidgets.QPushButton('Run')
         self.buttonPlot.clicked.connect(self.get_data)
 
-        self.buttonAbout = QtGui.QPushButton('About')
+        self.buttonAbout = QtWidgets.QPushButton('About')
         self.buttonAbout.clicked.connect(self.form_about)
 
-        self.buttonSModel = QtGui.QPushButton('Save Model')
+        self.buttonSModel = QtWidgets.QPushButton('Save Model')
         self.buttonSModel.clicked.connect(self.save_model)
 
-        self.buttonSData = QtGui.QPushButton('Save Data')
+        self.buttonSData = QtWidgets.QPushButton('Save Data')
         self.buttonSData.clicked.connect(self.save_data)
 
-        textMaxPeriode = QtGui.QLabel( 'Maximum Period:' )
-        textNumDec = QtGui.QLabel( 'Number of Decade:' )
-        textPerDec = QtGui.QLabel( 'Periode per Decade:' )
-        self.lineEditMaxPeriode = QtGui.QLineEdit('1000', self)
-        self.lineEditNumDec = QtGui.QLineEdit('6', self)
-        self.lineEditPerDec = QtGui.QLineEdit('10', self)
+        textMaxPeriode = QtWidgets.QLabel( 'Maximum Period:' )
+        textNumDec = QtWidgets.QLabel( 'Number of Decade:' )
+        textPerDec = QtWidgets.QLabel( 'Periode per Decade:' )
+        self.lineEditMaxPeriode = QtWidgets.QLineEdit('1000', self)
+        self.lineEditNumDec = QtWidgets.QLineEdit('6', self)
+        self.lineEditPerDec = QtWidgets.QLineEdit('10', self)
 
-        textRes = QtGui.QLabel('Resistivity:')
-        textThi = QtGui.QLabel('Thickness:')
-        self.lineEditRes = QtGui.QLineEdit('100, 10, 1000', self)
-        self.lineEditThi = QtGui.QLineEdit('1000, 2000', self)
+        textRes = QtWidgets.QLabel('Resistivity:')
+        textThi = QtWidgets.QLabel('Thickness:')
+        self.lineEditRes = QtWidgets.QLineEdit('100, 10, 1000', self)
+        self.lineEditThi = QtWidgets.QLineEdit('1000, 2000', self)
 
-        horizontalLayout1 = QtGui.QHBoxLayout()
+        horizontalLayout1 = QtWidgets.QHBoxLayout()
         horizontalLayout1.addWidget(textMaxPeriode)
         horizontalLayout1.addWidget(self.lineEditMaxPeriode)
         horizontalLayout1.addWidget(textNumDec)
@@ -52,19 +52,19 @@ class Window(QtGui.QDialog):
         horizontalLayout1.addWidget(textPerDec)
         horizontalLayout1.addWidget(self.lineEditPerDec)
 
-        horizontalLayout2 = QtGui.QHBoxLayout()
+        horizontalLayout2 = QtWidgets.QHBoxLayout()
         horizontalLayout2.addWidget(textRes)
         horizontalLayout2.addWidget(self.lineEditRes)
         horizontalLayout2.addWidget(textThi)
         horizontalLayout2.addWidget(self.lineEditThi)
 
-        horizontalLayout3 = QtGui.QHBoxLayout()
+        horizontalLayout3 = QtWidgets.QHBoxLayout()
         horizontalLayout3.addWidget(self.buttonPlot)
         horizontalLayout3.addWidget(self.buttonSModel)
         horizontalLayout3.addWidget(self.buttonSData)
         horizontalLayout3.addWidget(self.buttonAbout)
 
-        verticalLayout = QtGui.QVBoxLayout()
+        verticalLayout = QtWidgets.QVBoxLayout()
         verticalLayout.addLayout(horizontalLayout1)
         verticalLayout.addLayout(horizontalLayout2)
         verticalLayout.addWidget(self.toolbar)
@@ -73,7 +73,7 @@ class Window(QtGui.QDialog):
         self.setLayout(verticalLayout)
 
     def form_about(self):
-        choice = QtGui.QMessageBox.information(self, '1DForModMT', '1D Forward Modeling Magnetotelluric is created by:'
+        choice = QtWidgets.QMessageBox.information(self, '1DForModMT', '1D Forward Modeling Magnetotelluric is created by:'
                                                                     '\n'
                                                                     '\nEvi Muharoroh \tUnila \t\tevimuharoroh96@gmail.com'
                                                                     '\nArif Darmawan \tElnusa \t\tarif.darmawan@elnusa.co.id'
@@ -88,7 +88,7 @@ class Window(QtGui.QDialog):
                                                                     '\n'
                                                                     '\nReference:'
                                                                     '\nGrandis, H. (1999). An alternative algorithm for one-dimensional magnetotelluric response calculation. Computer & Geoscienes 25 (1999) 199-125. ',
-                                                QtGui.QMessageBox.Ok)
+                                                QtWidgets.QMessageBox.Ok)
 
     def get_data(self):
         self.runStatus = True
@@ -99,19 +99,19 @@ class Window(QtGui.QDialog):
             self.min_freq = 1/ float(self.lineEditMaxPeriode.text())
         except ValueError:
             self.runStatus = False
-            QtGui.QMessageBox.warning(self, "Warning", "%s" % ('Wrong input!.\nMaximum period must be integer or float'))
+            QtWidgets.QMessageBox.warning(self, "Warning", "%s" % ('Wrong input!.\nMaximum period must be integer or float'))
 
         try:
             self.total_dec = int(self.lineEditNumDec.text())
         except ValueError:
             self.runStatus = False
-            QtGui.QMessageBox.warning(self, "Warning", "%s" % ('Wrong input!.\nNumber of decade must be integer'))
+            QtWidgets.QMessageBox.warning(self, "Warning", "%s" % ('Wrong input!.\nNumber of decade must be integer'))
 
         try:
             self.freq_per_dec = int(self.lineEditPerDec.text())
         except ValueError:
             self.runStatus = False
-            QtGui.QMessageBox.warning(self, "Warning", "%s" % ('Wrong input!.\nFrequency per decade must be integer'))
+            QtWidgets.QMessageBox.warning(self, "Warning", "%s" % ('Wrong input!.\nFrequency per decade must be integer'))
 
                 
         try:
@@ -121,7 +121,7 @@ class Window(QtGui.QDialog):
                 self.ress.append(float(res[i])) 
         except ValueError:
             self.runStatus = False
-            QtGui.QMessageBox.warning(self, "Warning", "%s" % ('Wrong input!.\nResistivity must be integer or float'))
+            QtWidgets.QMessageBox.warning(self, "Warning", "%s" % ('Wrong input!.\nResistivity must be integer or float'))
         
         try:
             thi = (self.lineEditThi.text()).split(',')
@@ -130,7 +130,7 @@ class Window(QtGui.QDialog):
                 self.thii.append(float(thi[i]))
         except ValueError:
             self.runStatus = False
-            QtGui.QMessageBox.warning(self, "Warning", "%s" % ('Wrong input!.\nThickness must be integer or float'))
+            QtWidgets.QMessageBox.warning(self, "Warning", "%s" % ('Wrong input!.\nThickness must be integer or float'))
 
         self.compute()
 
@@ -209,7 +209,7 @@ class Window(QtGui.QDialog):
     def save_model(self):
         if self.runStatus == True:
 
-            fileModel = QtGui.QFileDialog.getSaveFileName(self, 'Save Model File')
+            fileModel = QtWidgets.QFileDialog.getSaveFileName(self, 'Save Model File')
 
             text_file = open(fileModel, "w")
             text_file.write('%-15s %s\n' % ('Depth (m)', 'Resistivity'))
@@ -220,14 +220,14 @@ class Window(QtGui.QDialog):
 
             text_file.close()
 
-            QtGui.QMessageBox.information(self, "Success", "%s" % ('Write model file, done!'))
+            QtWidgets.QMessageBox.information(self, "Success", "%s" % ('Write model file, done!'))
         else:
-            QtGui.QMessageBox.warning(self, "Warning", "%s" % ('You must run 1D Forward before save the Model'))
+            QtWidgets.QMessageBox.warning(self, "Warning", "%s" % ('You must run 1D Forward before save the Model'))
 
     def save_data(self):
         if self.runStatus == True:
             
-            fileData = QtGui.QFileDialog.getSaveFileName(self, 'Save Data File')
+            fileData = QtWidgets.QFileDialog.getSaveFileName(self, 'Save Data File')
 
             text_fileD = open(fileData, "w")
             text_fileD.write('%-15s %-15s %-15s\n' % ('Period (s)', 'App. Res.','Phase'))
@@ -237,12 +237,12 @@ class Window(QtGui.QDialog):
 
             text_fileD.close()
 
-            QtGui.QMessageBox.information(self, "Success", "%s" % ('Write model file, done!'))
+            QtWidgets.QMessageBox.information(self, "Success", "%s" % ('Write model file, done!'))
         else:
-            QtGui.QMessageBox.warning(self, "Warning", "%s" % ('You must run 1D Forward before save the Data'))
+            QtWidgets.QMessageBox.warning(self, "Warning", "%s" % ('You must run 1D Forward before save the Data'))
 
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
 
     main = Window()
     main.show()
