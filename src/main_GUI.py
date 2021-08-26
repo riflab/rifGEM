@@ -1,11 +1,12 @@
 import sys
 import numpy as np
 import FFMT1D
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtGui, QtWidgets
 
-from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
+
 
 class Window(QtWidgets.QDialog):
     def __init__(self, parent=None):
@@ -28,13 +29,13 @@ class Window(QtWidgets.QDialog):
 
         self.buttonSModel = QtWidgets.QPushButton('Save Model')
         self.buttonSModel.clicked.connect(self.save_model)
-
+ 
         self.buttonSData = QtWidgets.QPushButton('Save Data')
-        self.buttonSData.clicked.connect(self.save_data)
+        self.buttonSData.clicked.connect(self.save_data) 
 
-        textMaxPeriode = QtWidgets.QLabel( 'Maximum Period:' )
-        textNumDec = QtWidgets.QLabel( 'Number of Decade:' )
-        textPerDec = QtWidgets.QLabel( 'Periode per Decade:' )
+        textMaxPeriode = QtWidgets.QLabel('Maximum Period:')
+        textNumDec = QtWidgets.QLabel('Number of Decade:')
+        textPerDec = QtWidgets.QLabel('Periode per Decade:')
         self.lineEditMaxPeriode = QtWidgets.QLineEdit('1000', self)
         self.lineEditNumDec = QtWidgets.QLineEdit('6', self)
         self.lineEditPerDec = QtWidgets.QLineEdit('10', self)
@@ -73,7 +74,7 @@ class Window(QtWidgets.QDialog):
         self.setLayout(verticalLayout)
 
     def form_about(self):
-        choice = QtWidgets.QMessageBox.information(self, '1DForModMT', '1D Forward Modeling Magnetotelluric is created by:'
+        QtWidgets.QMessageBox.information(self, '1DForModMT', '1D Forward Modeling Magnetotelluric is created by:'
                                                                     '\n'
                                                                     '\nEvi Muharoroh \tUnila \t\tevimuharoroh96@gmail.com'
                                                                     '\nArif Darmawan \tElnusa \t\tarif.darmawan@elnusa.co.id'
@@ -175,8 +176,8 @@ class Window(QtWidgets.QDialog):
 
         # create an axis
         ax1 = self.figure.add_subplot(1, 4, 1)
-        ax2 = self.figure.add_subplot(2, 4, (2,4))
-        ax3 = self.figure.add_subplot(2, 4, (6,8))
+        ax2 = self.figure.add_subplot(2, 4, (2, 4))
+        ax3 = self.figure.add_subplot(2, 4, (6, 8))
 
         # discards the old graph
         ax1.clear()
@@ -193,13 +194,13 @@ class Window(QtWidgets.QDialog):
 
         ax2.loglog(self.per, self.rho, '*-', linewidth=0.7, markersize=4)
         ax2.set_ylim(1, 1000)
-        ax2.set_xlabel('Periode (s)', fontsize=8)
+        ax2.set_xlabel('Period (s)', fontsize=8)
         ax2.set_ylabel('Ohm meter', fontsize=8)
         ax2.set_title('Apparent Resistivity', fontsize=8)
 
         ax3.semilogx(self.per, self.phas, '*-', linewidth=0.7, markersize=4)
         ax3.set_ylim(0, 90)
-        ax3.set_xlabel('Periode (s)', fontsize=8)
+        ax3.set_xlabel('Period (s)', fontsize=8)
         ax3.set_ylabel('Degree', fontsize=8)
         ax3.set_title('Phase', fontsize=8)
 

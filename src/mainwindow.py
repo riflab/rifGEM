@@ -1,58 +1,20 @@
-# -*- coding: utf-8 -*-
+from PyQt5 import QtWidgets, uic
+import sys
+from widget_1Dmod import Ui as oneDmod
 
-# Form implementation generated from reading ui file 'mainwindow.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
+class Ui(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(Ui, self).__init__()  # Call the inherited classes __init__ method
+        uic.loadUi('mainwindow.ui', self)  # Load the .ui file
+        self.show()  # Show the GUI
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+        self.action1D_Modelling.triggered.connect(lambda: self.action1D_ModellingClicked())
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
-        self.menubar.setObjectName("menubar")
-        self.menuModelling = QtWidgets.QMenu(self.menubar)
-        self.menuModelling.setObjectName("menuModelling")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
-        self.action1D_Modelling = QtWidgets.QAction(MainWindow)
-        self.action1D_Modelling.setObjectName("action1D_Modelling")
-        self.action2D_Modelling = QtWidgets.QAction(MainWindow)
-        self.action2D_Modelling.setObjectName("action2D_Modelling")
-        self.action3D_Modelling = QtWidgets.QAction(MainWindow)
-        self.action3D_Modelling.setObjectName("action3D_Modelling")
-        self.menuModelling.addAction(self.action1D_Modelling)
-        self.menuModelling.addAction(self.action2D_Modelling)
-        self.menuModelling.addAction(self.action3D_Modelling)
-        self.menubar.addAction(self.menuModelling.menuAction())
-
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-    def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.menuModelling.setTitle(_translate("MainWindow", "Modelling"))
-        self.action1D_Modelling.setText(_translate("MainWindow", "1D Modelling"))
-        self.action2D_Modelling.setText(_translate("MainWindow", "2D Modelling"))
-        self.action3D_Modelling.setText(_translate("MainWindow", "3D Modelling"))
-
+    def action1D_ModellingClicked(self):
+        window_oneDmod = oneDmod()
+        window_oneDmod.show()
 
 if __name__ == "__main__":
-    import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
-
+    window = Ui()
+    app.exec_()
