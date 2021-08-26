@@ -2,13 +2,11 @@ from PyQt5 import QtWidgets, uic
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
-# from pyqtgraph import PlotWidget
-# import pyqtgraph as pg
 import sys
 
 
 class Ui(QtWidgets.QWidget):
-    def __init__(self) -> object:
+    def __init__(self):
         super(Ui, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('widget_1Dmod.ui', self)  # Load the .ui file
 
@@ -16,12 +14,12 @@ class Ui(QtWidgets.QWidget):
 
         self.figure = Figure()
         self.widgetCanvas = FigureCanvas(self.figure)
-        # self.toolbar = NavigationToolbar(self.widgetCanvas, self)
-        self.widgetCanvas.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        # self.verticalLayout.addWidget(self.toolbar)
-        # self.verticalLayout.addWidget(self.widgetCanvas)
+        self.toolbar = NavigationToolbar(self.widgetCanvas, self)
 
-        self.show()  # Show the GUI
+        self.verticalLayout.addWidget(self.toolbar, 1)
+        self.verticalLayout.addWidget(self.widgetCanvas, 20)
+
+        self.show()
 
     def button_click(self):
         PeriodePerDecade = self.lineEditPeriodePerDecade.text()
