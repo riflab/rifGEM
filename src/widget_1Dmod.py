@@ -3,7 +3,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 # from pyqtgraph import PlotWidget
-import pyqtgraph as pg
+# import pyqtgraph as pg
 import sys
 
 
@@ -16,10 +16,10 @@ class Ui(QtWidgets.QWidget):
 
         self.figure = Figure()
         self.widgetCanvas = FigureCanvas(self.figure)
-        self.toolbar = NavigationToolbar(self.widgetCanvas, self)
+        # self.toolbar = NavigationToolbar(self.widgetCanvas, self)
         self.widgetCanvas.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout.addWidget(self.toolbar)
-        self.verticalLayout.addWidget(self.widgetCanvas)
+        # self.verticalLayout.addWidget(self.toolbar)
+        # self.verticalLayout.addWidget(self.widgetCanvas)
 
         self.show()  # Show the GUI
 
