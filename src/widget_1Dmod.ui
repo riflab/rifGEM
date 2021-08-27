@@ -83,6 +83,9 @@
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="text">
+                <string>10</string>
+               </property>
               </widget>
              </item>
             </layout>
@@ -110,6 +113,9 @@
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="text">
+                <string>1000</string>
+               </property>
               </widget>
              </item>
             </layout>
@@ -136,6 +142,9 @@
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
+               </property>
+               <property name="text">
+                <string>6</string>
                </property>
               </widget>
              </item>
@@ -181,6 +190,9 @@
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="text">
+                <string>1000, 500</string>
+               </property>
               </widget>
              </item>
             </layout>
@@ -207,6 +219,9 @@
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
+               </property>
+               <property name="text">
+                <string>100, 10, 1000</string>
                </property>
               </widget>
              </item>

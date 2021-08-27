@@ -26,21 +26,23 @@ class Ui(QtWidgets.QWidget):
         error_list = {}
 
         period_per_decade = self.lineEditPeriodePerDecade.text()
-        error_list = check_error(period_per_decade, "Period per Decade", error_list)
+        error_list, period_per_decade = check_error(period_per_decade, "Period per Decade", error_list)
 
         maximum_period = self.lineEditMaximumPeriode.text()
-        error_list = check_error(maximum_period, "Maximum Period", error_list)
+        error_list, maximum_period = check_error(maximum_period, "Maximum Period", error_list)
 
         number_of_decade = self.lineEditNumberOfDecade.text()
-        error_list = check_error(number_of_decade, "Number of Decade", error_list)
+        error_list, number_of_decade = check_error(number_of_decade, "Number of Decade", error_list)
 
         thickness = self.lineEditThickness.text()
-        error_list = check_error(thickness, "Thickness", error_list)
+        error_list, thickness = check_error(thickness, "Thickness", error_list)
 
         resistivity = self.lineEditResistivity.text()
-        error_list = check_error(resistivity, "Resistivity", error_list)
+        error_list, resistivity = check_error(resistivity, "Resistivity", error_list)
 
-        error_dialog(error_list)
+        if error_list != {}:
+            error_dialog(error_list)
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

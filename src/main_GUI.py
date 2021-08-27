@@ -114,7 +114,6 @@ class Window(QtWidgets.QDialog):
             self.runStatus = False
             QtWidgets.QMessageBox.warning(self, "Warning", "%s" % ('Wrong input!.\nFrequency per decade must be integer'))
 
-                
         try:
             res = (self.lineEditRes.text()).split(',')
             self.ress = []

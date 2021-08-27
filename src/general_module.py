@@ -16,11 +16,15 @@ def error_dialog(error_list):
 def check_error(val, text, error_list):
     if val == "":
         error_list[text] = " is blank"
+    elif text == "Period per Decade" or text == "Maximum Period" or text == "Number of Decade":
+        try:
+            int(val)
+        except Exception:
+            error_list[text] = " must be an integer"
     else:
-        if text == "Period per Decade" or text == "Maximum Period" or text == "Number of Decade":
-            try:
-                int(val)
-            except Exception:
-                error_list[text] = " must be an integer"
+        try:
+            val = list(map(int, val.split(',')))
+        except ValueError:
+            error_list[text] = " must be an integer and separate by comma"
 
-    return error_list
+    return error_list, val
