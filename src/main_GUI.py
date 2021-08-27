@@ -167,7 +167,7 @@ class Window(QtWidgets.QDialog):
             self.resss.append(self.ress[i])
 
         # compute forward 1D ----------------------------------------------------------
-        self.rho, self.phas = FFMT1D.FFMT1D(self.ress, self.thii, self.per)
+        self.rho, self.phas = FFMT1D.ffmt1d(self.ress, self.thii, self.per)
         
         self.plot()
         

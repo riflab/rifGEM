@@ -10,6 +10,12 @@
     <height>562</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>1D Modelling</string>
   </property>
@@ -191,7 +197,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>1000, 500</string>
+                <string>1000, 2000</string>
                </property>
               </widget>
              </item>

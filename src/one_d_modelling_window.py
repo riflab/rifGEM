@@ -3,13 +3,14 @@ from PyQt5 import QtWidgets, uic
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
-from general_module import check_error, error_dialog
+from general_module import check_error, error_dialog, compute, plot_curve
+from FFMT1D import ffmt1d
 
 
-class Ui(QtWidgets.QWidget):
+class Ui(QtWidgets.QMainWindow):
     def __init__(self):
         super(Ui, self).__init__()  # Call the inherited classes __init__ method
-        uic.loadUi('widget_1Dmod.ui', self)  # Load the .ui file
+        uic.loadUi('one_d_modelling_window.ui', self)  # Load the .ui file
 
         self.commandLinkButtonRun.clicked.connect(lambda: self.button_click())
 
@@ -18,9 +19,9 @@ class Ui(QtWidgets.QWidget):
         self.toolbar = NavigationToolbar(self.widgetCanvas, self)
 
         self.verticalLayout.addWidget(self.toolbar, 1)
-        self.verticalLayout.addWidget(self.widgetCanvas, 50)
+        self.verticalLayout.addWidget(self.widgetCanvas, 100)
 
-        self.show()
+        self.showMaximized()
 
     def button_click(self):
         error_list = {}
@@ -42,6 +43,16 @@ class Ui(QtWidgets.QWidget):
 
         if error_list != {}:
             error_dialog(error_list)
+
+        frequency, period, depth, resistivity1 = compute(period_per_decade,
+                                                         maximum_period,
+                                                         number_of_decade,
+                                                         thickness,
+                                                         resistivity)
+
+        rho, pha = ffmt1d(resistivity, thickness, period)
+
+        plot_curve(self.figure, self.widgetCanvas, resistivity1, depth, period, rho, pha)
 
 
 if __name__ == "__main__":
