@@ -71,7 +71,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>Periode per Decade:</string>
+                <string>Period per Decade:</string>
                </property>
               </widget>
              </item>
@@ -98,7 +98,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>Maximum Periode:</string>
+                <string>Maximum Period:</string>
                </property>
               </widget>
              </item>
@@ -256,6 +256,19 @@
             <bool>false</bool>
            </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
