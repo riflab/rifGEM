@@ -74,9 +74,9 @@ def compute(period_per_decade,
 
 def plot_curve(figure, widgetCanvas, resistivity1, depth, period, rho, pha):
     # create an axis
-    ax1 = figure.add_subplot(1, 4, 1)
-    ax2 = figure.add_subplot(2, 4, (2, 4))
-    ax3 = figure.add_subplot(2, 4, (6, 8))
+    ax1 = figure.add_subplot(1, 4, 4)
+    ax2 = figure.add_subplot(2, 4, (1, 3))
+    ax3 = figure.add_subplot(2, 4, (5, 7))
 
     # discards the old graph
     ax1.clear()
@@ -90,18 +90,23 @@ def plot_curve(figure, widgetCanvas, resistivity1, depth, period, rho, pha):
     ax1.set_title('Model', fontsize=8)
     ax1.set_ylim(1, max(depth) / 100000)
     ax1.invert_yaxis()
+    # ax1.set_aspect('equal', 'box')
 
     ax2.loglog(period, rho, '*-', linewidth=0.7, markersize=4)
     ax2.set_ylim(1, 1000)
     ax2.set_xlabel('Period (s)', fontsize=8)
     ax2.set_ylabel('Ohm meter', fontsize=8)
     ax2.set_title('Apparent Resistivity', fontsize=8)
+    # ax2.set_aspect('equal', 'box')
+    # ax2.set_aspect('auto')
 
     ax3.semilogx(period, pha, '*-', linewidth=0.7, markersize=4)
     ax3.set_ylim(0, 90)
     ax3.set_xlabel('Period (s)', fontsize=8)
     ax3.set_ylabel('Degree', fontsize=8)
     ax3.set_title('Phase', fontsize=8)
+    ax3.sharex(ax2)
+    ax3.set_aspect('auto')
 
-    figure.tight_layout()
+    # figure.tight_layout()
     widgetCanvas.draw()
