@@ -11,7 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Magnetotelluric 1D Modelling</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../images/icon.png</normaloff>../images/icon.png</iconset>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
@@ -190,10 +197,18 @@
            <item>
             <widget class="QCommandLinkButton" name="commandLinkButtonRun">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="autoFillBackground">
+              <bool>false</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(170, 255, 127);
+font: 75 12pt &quot;MS Shell Dlg 2&quot;;
+border-color: rgb(0, 255, 0);</string>
              </property>
              <property name="text">
               <string>Run</string>
