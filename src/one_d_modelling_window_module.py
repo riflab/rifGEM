@@ -118,23 +118,33 @@ def form_about():
     msg.setIcon(QtWidgets.QMessageBox.Information)
     msg.setWindowTitle("About")
     msg.setText('1D Forward Modeling Magnetotelluric (MT) is created by'
-                '\n'
-                '\nArif Darmawan \tGeo Dipa Energi \t\tarif.darmawan@geodipa.co.id'
-                '\n              \t\tRiflab \t\t\tarif.darmawan@riflab.com'
-                '\n'
-                '\nThis is free and opensource software under GNU General Public Licensed.'
-                '\nUse at your own risk but enjoy if it works for you'
-                '\nOther software can be downloaded at https://github.com/riflab/'
-                '\n'
-                '\nVersion 2.0_20210829'
-                '\nDate: 29 December 2021'
-                '\n'
-                '\nNumerical Reference:'
-                '\nGrandis, H. (1999). An alternative algorithm for one-dimensional magnetotelluric response '
-                'calculation. Computer & Geosciences 25 (1999) 199-125.')
+                '<br>'
+                '<br><strong>Arif Darmawan</strong>' 
+                '<br>Geo Dipa Energi'
+                '<br><a href="arif.darmawan@geodipa.co.id">arif.darmawan@geodipa.co.id</a>'
+                '<br><a href="arif.darmawan@geodipa.co.id">arif.darmawan@riflab.co.id</a>'
+                '<br>'
+                '<br>This is free and opensource software under GNU General Public Licensed.'
+                '<br>Use at your own risk but enjoy if it works for you'
+                '<br>Other software can be downloaded at '
+                '<a href="https://github.com/riflab/">https://github.com/riflab/</a> '
+                '<br>'
+                '<br>Version 2.0_20210829'
+                '<br>Date: 29 December 2021'
+                '<br>'
+                '<br>Numerical Reference:'
+                '<br><a href="https://www.sciencedirect.com/science/article/pii/S0098300498001101?via%3Dihub">'
+                'Grandis, H. (1999). An alternative algorithm for one-dimensional magnetotelluric response '
+                'calculation. Computer & Geosciences 25 (1999) 199-125</a>'
+                )
 
     msg.exec_()
 
 
 def open_web_browser():
     webbrowser.open('https://github.com/riflab/rifGEM')
+
+
+def window_close(ui):
+    print('a')
+    # ui.close()

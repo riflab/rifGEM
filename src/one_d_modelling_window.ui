@@ -249,7 +249,7 @@
     <addaction name="actionSave_Data"/>
     <addaction name="actionSave_Model"/>
     <addaction name="separator"/>
-    <addaction name="actionExit"/>
+    <addaction name="actionClose"/>
    </widget>
    <widget class="QMenu" name="menuHelo">
     <property name="title">
@@ -277,9 +277,9 @@
     <string>Save Model</string>
    </property>
   </action>
-  <action name="actionExit">
+  <action name="actionClose">
    <property name="text">
-    <string>Exit</string>
+    <string>Close</string>
    </property>
   </action>
   <action name="actionTutorial">
