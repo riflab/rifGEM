@@ -84,9 +84,9 @@ def plot_curve(widget_canvas, df, df1, ax1, ax2, ax3):
     ax3.clear()
 
     # plot data
-    ax1.loglog(df1['depth'], '-', linewidth=0.7)
-    ax2.loglog(df['rho'], '*-', linewidth=0.7, markersize=4)
-    ax3.semilogx(df['pha'], '*-', linewidth=0.7, markersize=4)
+    ax1.loglog(df1['depth'], '-', linewidth=0.9)
+    ax2.loglog(df['rho'], 'o-', linewidth=0.7, markersize=4)
+    ax3.semilogx(df['pha'], 'o-', linewidth=0.7, markersize=4)
 
     plot_template(widget_canvas, ax1, ax2, ax3, )
 
