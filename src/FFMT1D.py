@@ -19,7 +19,7 @@ def ffmt1d(res, thi, per):
 		x = np.zeros((nl, 2, 2), dtype=np.complex128)
 		a = np.zeros((2, 2), dtype=np.ndarray)
 		for j in range(0, nl):
-			z = np.sqrt(phi*amu*res[j]/per[i])
+			z = np.sqrt(phi*amu*res[j]*per[i])
 			zz.append(complex(z, z))
 			exp0 = np.exp((-2)*zz[j]/res[j]*thi[j])
 			exp1 = complex(1, 0)+exp0
@@ -47,7 +47,7 @@ def ffmt1d(res, thi, per):
 		rr = rnom/rden
 		zre.append(np.real(rr))
 		zim.append(np.imag(rr))
-		rho.append(per[i]*(np.absolute(rnom/rden))**2/(8e-7*phi*phi))
+		rho.append((1/per[i])*(np.absolute(rnom/rden))**2/(8e-7*phi*phi))
 		phas.append(np.arctan(zim[i]/zre[i])*180/phi)
 	return rho, phas
 

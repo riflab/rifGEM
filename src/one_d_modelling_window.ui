@@ -46,7 +46,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Period per Decade:</string>
+              <string>Frequency per Decade</string>
              </property>
             </widget>
            </item>
@@ -76,7 +76,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Maximum Period:</string>
+              <string>Minimum Frequency</string>
              </property>
             </widget>
            </item>
@@ -89,7 +89,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>1000</string>
+              <string>0.001</string>
              </property>
             </widget>
            </item>
@@ -106,7 +106,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Number of Decade:</string>
+              <string>Number of Decade</string>
              </property>
             </widget>
            </item>
@@ -119,7 +119,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>6</string>
+              <string>5</string>
              </property>
             </widget>
            </item>

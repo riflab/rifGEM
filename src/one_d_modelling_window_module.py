@@ -18,11 +18,16 @@ def error_dialog(error_list):
 def check_error(val, text, error_list):
     if val == "":
         error_list[text] = " is blank"
-    elif text == "Period per Decade" or text == "Maximum Period" or text == "Number of Decade":
+    elif text == "Frequency Per Decade" or text == "Number of Decade":
         try:
             val = int(val)
         except Exception:
             error_list[text] = " must be an integer"
+    elif text == "Minimum Frequency":
+        try:
+            val = float(val)
+        except Exception:
+            error_list[text] = " must be an float or integer"
     else:
         try:
             val = list(map(int, val.split(',')))
@@ -32,24 +37,21 @@ def check_error(val, text, error_list):
     return error_list, val
 
 
-def compute(period_per_decade,
-            maximum_period,
+def compute(frequency_per_decade,
+            minimum_frequency,
             number_of_decade,
             thickness,
             resistivity):
     # compute period and frequency
 
-    number_of_frequency = number_of_decade * period_per_decade + 1
-    constant = np.exp(np.log(10) / period_per_decade)
+    number_of_frequency = number_of_decade * frequency_per_decade + 1
+    constant = np.exp(np.log(10) / frequency_per_decade)
 
-    frequency = [1 / maximum_period]
-    period = [maximum_period]
+    frequency = [minimum_frequency]
 
     for i in range(1, number_of_frequency):
         a = frequency[i - 1] * constant
-        b = 1 / a
         frequency.append(a)
-        period.append(b)
 
     # compute depth
 
@@ -70,14 +72,10 @@ def compute(period_per_decade,
         resistivity.append(temp[i])
         resistivity.append(temp[i])
 
-    return frequency, period, depth, resistivity
+    return frequency, depth, resistivity
 
 
-def plot_curve(figure, widget_canvas, resistivity1, depth, period, rho, pha):
-    # create an axis
-    ax1 = figure.add_subplot(1, 4, 4)
-    ax2 = figure.add_subplot(2, 4, (1, 3))
-    ax3 = figure.add_subplot(2, 4, (5, 7))
+def plot_curve(widget_canvas, df, df1, ax1, ax2, ax3):
 
     # discards the old graph
     ax1.clear()
@@ -85,31 +83,34 @@ def plot_curve(figure, widget_canvas, resistivity1, depth, period, rho, pha):
     ax3.clear()
 
     # plot data
-    ax1.loglog(resistivity1, depth, '-', linewidth=0.7)
+    ax1.loglog(df1['depth'], '-', linewidth=0.7, label='Layered Model')
+    ax1.legend()
+    ax1.autoscale(axis='x')
+    ax1.set_ylim(1, 100000)
     ax1.set_xlabel('Resistivity (ohm meter)', fontsize=8)
     ax1.set_ylabel('Depth (m)', fontsize=8)
-    ax1.set_title('Model', fontsize=8)
-    ax1.set_ylim(1, max(depth) / 100000)
+    ax1.yaxis.tick_right()
+    ax1.yaxis.set_label_position("right")
     ax1.invert_yaxis()
-    # ax1.set_aspect('equal', 'box')
-
-    ax2.loglog(period, rho, '*-', linewidth=0.7, markersize=4)
+    ax1.grid(which='both', alpha=0.2)
+    #
+    ax2.loglog(df['rho'], '*-', linewidth=0.7, markersize=4, label='Apparent Resistivity')
+    ax2.legend()
+    ax2.autoscale(axis='x')
     ax2.set_ylim(1, 1000)
-    ax2.set_xlabel('Period (s)', fontsize=8)
     ax2.set_ylabel('Ohm meter', fontsize=8)
-    ax2.set_title('Apparent Resistivity', fontsize=8)
-    # ax2.set_aspect('equal', 'box')
-    # ax2.set_aspect('auto')
-
-    ax3.semilogx(period, pha, '*-', linewidth=0.7, markersize=4)
+    ax2.invert_xaxis()
+    ax2.grid(which='both', alpha=0.2)
+    #
+    ax3.semilogx(df['pha'], '*-', linewidth=0.7, markersize=4, label='Phase')
+    ax3.legend()
+    ax3.autoscale(axis='x')
     ax3.set_ylim(0, 90)
-    ax3.set_xlabel('Period (s)', fontsize=8)
+    ax3.set_xlabel('Frequency (Hz)', fontsize=8)
     ax3.set_ylabel('Degree', fontsize=8)
-    ax3.set_title('Phase', fontsize=8)
-    ax3.sharex(ax2)
-    ax3.set_aspect('auto')
-
-    figure.tight_layout()
+    ax3.invert_xaxis()
+    ax3.grid(which='both', alpha=0.2)
+    #
     widget_canvas.draw()
 
 
@@ -124,13 +125,13 @@ def form_about():
                 '<br><a href="arif.darmawan@geodipa.co.id">arif.darmawan@geodipa.co.id</a>'
                 '<br><a href="arif.darmawan@geodipa.co.id">arif.darmawan@riflab.co.id</a>'
                 '<br>'
+                '<br>Version 2.0_20210829'
+                '<br>Date: 29 December 2021'
+                '<br>'
                 '<br>This is free and opensource software under GNU General Public Licensed.'
                 '<br>Use at your own risk but enjoy if it works for you'
                 '<br>Other software can be downloaded at '
                 '<a href="https://github.com/riflab/">https://github.com/riflab/</a> '
-                '<br>'
-                '<br>Version 2.0_20210829'
-                '<br>Date: 29 December 2021'
                 '<br>'
                 '<br>Numerical Reference:'
                 '<br><a href="https://www.sciencedirect.com/science/article/pii/S0098300498001101?via%3Dihub">'
