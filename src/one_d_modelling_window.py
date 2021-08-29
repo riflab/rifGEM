@@ -10,13 +10,13 @@ from FFMT1D import ffmt1d
 
 class Ui(QtWidgets.QMainWindow):
     def __init__(self):
+
         super(Ui, self).__init__()  # Call the inherited classes __init__ method
         uic.loadUi('one_d_modelling_window.ui', self)  # Load the .ui file
 
         self.commandLinkButtonRun.clicked.connect(lambda: self.button_click())
 
         self.actionClose.triggered.connect(lambda: window_close(Ui))
-
         self.actionAbout.triggered.connect(lambda: form_about())
         self.actionTutorial.triggered.connect(lambda: open_web_browser())
 
@@ -30,38 +30,13 @@ class Ui(QtWidgets.QMainWindow):
         self.ax1 = self.figure.add_subplot(1, 5, (4, 5))
         self.ax2 = self.figure.add_subplot(3, 5, (1, 8))
         self.ax3 = self.figure.add_subplot(3, 5, (11, 13))
-        #
-        self.ax1.loglog()
-        self.ax1.set_xlim(1, 10000)
-        self.ax1.set_ylim(1, 100000)
-        self.ax1.set_xlabel('Resistivity (ohm meter)', fontsize=8)
-        self.ax1.set_ylabel('Depth (m)', fontsize=8)
-        self.ax1.yaxis.tick_right()
-        self.ax1.yaxis.set_label_position("right")
-        self.ax1.invert_yaxis()
-        self.ax1.grid(which='both', alpha=0.2)
 
-        #
-        self.ax2.loglog()
-        self.ax2.set_xlim(0.001, 1000)
-        self.ax2.set_ylim(1, 1000)
-        self.ax2.set_ylabel('Ohm meter', fontsize=8)
-        self.ax2.invert_xaxis()
-        self.ax2.grid(which='both', alpha=0.2)
-        #
-        self.ax3.semilogx()
-        self.ax3.set_xlim(0.001, 1000)
-        self.ax3.set_ylim(0, 90)
-        self.ax3.set_xlabel('Frequency (Hz)', fontsize=8)
-        self.ax3.set_ylabel('Degree', fontsize=8)
-        self.ax3.invert_xaxis()
-        self.ax3.grid(which='both', alpha=0.2)
-
-        self.figure.tight_layout()
+        plot_template(self.widgetCanvas, self.ax1, self.ax2, self.ax3)
 
         self.showMaximized()
 
     def button_click(self):
+
         error_list = {}
 
         frequency_per_decade = self.lineEditPeriodePerDecade.text()
@@ -100,6 +75,7 @@ class Ui(QtWidgets.QMainWindow):
 
 
 if __name__ == "__main__":
+
     app = QtWidgets.QApplication(sys.argv)
     window = Ui()
     app.exec_()

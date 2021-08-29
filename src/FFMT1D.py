@@ -2,6 +2,7 @@ import numpy as np
 
 
 def ffmt1d(res, thi, per):
+
 	# global b
 	b = [[0] * 2 for _ in range(2)]
 	thi.append(0)
@@ -53,6 +54,7 @@ def ffmt1d(res, thi, per):
 
 
 def multiplication(a, d):
+
 	c = np.zeros((2, 2), dtype=np.complex128)
 	# C[i][j] = complex(0,0)
 	for i in range(0, 2):
