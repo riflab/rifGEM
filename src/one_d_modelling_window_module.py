@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets
 import numpy as np
+import webbrowser
 
 
 def error_dialog(error_list):
@@ -72,7 +73,7 @@ def compute(period_per_decade,
     return frequency, period, depth, resistivity
 
 
-def plot_curve(figure, widgetCanvas, resistivity1, depth, period, rho, pha):
+def plot_curve(figure, widget_canvas, resistivity1, depth, period, rho, pha):
     # create an axis
     ax1 = figure.add_subplot(1, 4, 4)
     ax2 = figure.add_subplot(2, 4, (1, 3))
@@ -108,5 +109,32 @@ def plot_curve(figure, widgetCanvas, resistivity1, depth, period, rho, pha):
     ax3.sharex(ax2)
     ax3.set_aspect('auto')
 
-    # figure.tight_layout()
-    widgetCanvas.draw()
+    figure.tight_layout()
+    widget_canvas.draw()
+
+
+def form_about():
+    msg = QtWidgets.QMessageBox()
+    msg.setIcon(QtWidgets.QMessageBox.Information)
+    msg.setWindowTitle("About")
+    msg.setText('1D Forward Modeling Magnetotelluric (MT) is created by'
+                '\n'
+                '\nArif Darmawan \tGeo Dipa Energi \t\tarif.darmawan@geodipa.co.id'
+                '\n              \t\tRiflab \t\t\tarif.darmawan@riflab.com'
+                '\n'
+                '\nThis is free and opensource software under GNU General Public Licensed.'
+                '\nUse at your own risk but enjoy if it works for you'
+                '\nOther software can be downloaded at https://github.com/riflab/'
+                '\n'
+                '\nVersion 2.0_20210829'
+                '\nDate: 29 December 2021'
+                '\n'
+                '\nNumerical Reference:'
+                '\nGrandis, H. (1999). An alternative algorithm for one-dimensional magnetotelluric response '
+                'calculation. Computer & Geosciences 25 (1999) 199-125.')
+
+    msg.exec_()
+
+
+def open_web_browser():
+    webbrowser.open('https://github.com/riflab/rifGEM')

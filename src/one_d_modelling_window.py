@@ -3,7 +3,7 @@ from PyQt5 import QtWidgets, uic
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
-from one_d_modelling_window_module import check_error, error_dialog, compute, plot_curve
+from one_d_modelling_window_module import check_error, error_dialog, compute, plot_curve, form_about, open_web_browser
 from FFMT1D import ffmt1d
 
 
@@ -13,7 +13,9 @@ class Ui(QtWidgets.QMainWindow):
         uic.loadUi('one_d_modelling_window.ui', self)  # Load the .ui file
 
         self.commandLinkButtonRun.clicked.connect(lambda: self.button_click())
-        # self.action1D_Modelling.triggered.connect(lambda: self.action1d_modelling_clicked())
+
+        self.actionAbout.triggered.connect(lambda: form_about())
+        self.actionTutorial.triggered.connect(lambda: open_web_browser())
 
         self.figure = Figure()
         self.widgetCanvas = FigureCanvas(self.figure)
