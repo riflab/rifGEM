@@ -128,7 +128,6 @@ def plot_template(widget_canvas, ax1, ax2, ax3):
     ax3.legend(['Phase'])
     ax3.autoscale(axis='x')
 
-
     widget_canvas.draw()
 
 
