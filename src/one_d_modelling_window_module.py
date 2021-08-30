@@ -46,6 +46,7 @@ def compute(frequency_per_decade,
             resistivity):
 
     # compute period and frequency
+
     number_of_frequency = number_of_decade * frequency_per_decade + 1
     constant = np.exp(np.log(10) / frequency_per_decade)
 
@@ -56,6 +57,7 @@ def compute(frequency_per_decade,
         frequency.append(a)
 
     # compute depth
+
     depth = [1.0]
 
     a = 0
@@ -79,11 +81,13 @@ def compute(frequency_per_decade,
 def plot_curve(widget_canvas, df, df1, ax1, ax2, ax3):
 
     # discards the old graph
+
     ax1.clear()
     ax2.clear()
     ax3.clear()
 
     # plot data
+
     ax1.loglog(df1['depth'], '-', linewidth=0.9)
     ax2.loglog(df['rho'], 'o-', linewidth=0.7, markersize=4)
     ax3.semilogx(df['pha'], 'o-', linewidth=0.7, markersize=4)
@@ -123,6 +127,7 @@ def plot_template(widget_canvas, ax1, ax2, ax3):
     ax3.grid(which='both', alpha=0.2)
     ax3.legend(['Phase'])
     ax3.autoscale(axis='x')
+
 
     widget_canvas.draw()
 
