@@ -1,16 +1,16 @@
 import pandas as pd
 import numpy as np
 from matplotlib import cm
-from matplotlib.colors import LogNorm
-import matplotlib.pyplot as plt
+from matplotlib.colors import BoundaryNorm, ListedColormap
+
 
 def create_mesh():
     # x parameter
 
     minimum_cell = 500
     number_of_node = 20
-    horizontal_padding = 1.9
-    number_of_padding = 3
+    horizontal_padding = 1.5
+    number_of_padding = 5
 
     x_cell = []
     for i in range(number_of_node):
@@ -36,9 +36,9 @@ def create_mesh():
     # z parameter
 
     surface = 0
-    minimum_mesh = 50
+    minimum_mesh = 10
     vertical_constanta = 1.2
-    number_of_layer = 20
+    number_of_layer = 50
 
     z_cell = [surface, minimum_mesh]
     temp = z_cell[1]
@@ -67,25 +67,34 @@ def database():
 
 
 def plot_mesh(figure, widget_canvas, ax1, x_mesh, z_mesh):
-
     xx, yy = np.meshgrid(x_mesh, z_mesh)
-    zz = (xx * 0) + 100
+    zz = (xx * 0) + 200
 
-    ax1.plot(xx, yy, 'o', markersize=1, color='black', alpha=0.4)
+    gist_rainbow = cm.get_cmap('gist_rainbow', 512)
+    new_color_map = ListedColormap(gist_rainbow(np.linspace(0, 0.85, 512)))
 
-    m = cm.ScalarMappable(cmap=cm.jet_r, norm=LogNorm())
-    m.set_array([1, 1000])
-    n = figure.colorbar(m)
-    n.set_label('Resistivity (ohm meter)', rotation=270)
+    min_resistivity = 1
+    max_resistivity = 1000
+    num_resistivity = 15
 
-    # color_value = plt.get_cmap('jet_r')
-    # resistivity_value = np.log10(zz) / (np.log10(1000))
-    ax1.pcolormesh(xx, yy, zz, norm=n)
+    a = (np.log10(max_resistivity) - np.log10(min_resistivity))/num_resistivity
 
-    ax1.invert_yaxis()
-    ax1.autoscale(axis='both')
+    bounds = [round(10**np.log10(min_resistivity))]
+    temp = np.log10(min_resistivity)
+    for i in range(0, num_resistivity):
+        temp += a
+        bounds.append(round(10**temp))
+
+    norm = BoundaryNorm(bounds, ncolors=new_color_map.N)
+
+    c = ax1.pcolor(xx, yy, zz, cmap=new_color_map, norm=norm, edgecolors='black', linewidths=0.4, shading='auto')
+    figure.colorbar(c, ax=ax1, ticks=bounds)
+
+    ax1.autoscale(axis='x')
+    ax1.set_ylim([-1000, 5000])
     ax1.set_xlabel('Distance (m)', fontsize=8)
     ax1.set_ylabel('Elevation (m)', fontsize=8)
+    ax1.invert_yaxis()
 
     figure.tight_layout()
     widget_canvas.draw()
