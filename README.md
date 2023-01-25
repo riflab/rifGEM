@@ -5,12 +5,16 @@ This is free and opensource software under GNU General Public Licensed. Use at y
 
 # About Me
 Arif Darmawan 
+
 arif.darmawan@riflab.com
+
 [www.riflab.com](https://riflab.com)
 
 # Change Log
 Version 1.0_20171121: First version
+
 Version 1.1_20200616: Update to PyQt5 from PyQt4
+
 Version 2.0_20210829: Re-layout and re-code 1D Modelling
 
 
